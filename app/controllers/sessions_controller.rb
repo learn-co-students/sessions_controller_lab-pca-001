@@ -4,15 +4,11 @@ class SessionsController < ApplicationController
 
   def create
     name = params[:name]
+    redirect_to login_path if name.nil?
+    redirect_to login_path elsif name.empty?
 
-    if name.nil?
-      redirect_to login_path
-    elsif name.empty?
-      redirect_to login_path
-    else
-      session[:name] = name
-      redirect_to "/"
-    end
+    session[:name] = name
+    redirect_to "/"
   end
 
   def destroy
